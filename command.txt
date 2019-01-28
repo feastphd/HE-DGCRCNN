@@ -1,0 +1,4 @@
+Run make_edgelist.py to make edgelist.txt file
+Install OpenNE: https://github.com/thunlp/OpenNE
+Run  python -m openne --method deepWalk --input edgelist.txt --graph-format edgelist --output vec_all.txt   to get the node embedding
+Run make_sim.py to get the sim.json
