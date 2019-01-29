@@ -8,13 +8,6 @@ Functions of each file:
  - Skip noise samples, generate relevant labels and weights according to classes' similarity: make_labels.py
  - Train and test models: code2.py 
  
-# Papers
-
-See
-
-"Hierarchical Taxonomy-Aware Deep Graph Capsule Recurrent CNN for Large-Scale Multi-Label Text Classification"
-
-Hao Peng, Jianxin Li, Qiran Gong, Senzhang Wang, Peiwen Li, Lihong Wang and Philip S Yu
 
 # License
 
