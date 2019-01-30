@@ -6,7 +6,8 @@ Functions of each file:
  - Compute elastic distance (classes' similarity): make_edgelist.py, make_sim.py
  - Represent each sample (passage) by using GCNs and reorder neighbors to extract long distance information: make_data.py
  - Skip noise samples, generate relevant labels and weights according to classes' similarity: make_labels.py
- - Train and test models: code2.py 
+ - Train and test models: code2.py + capsule_layer.py + capsule_conv_layer.py (Capsule Net)
+ - code2_cnn.py (CNN) code2_lstm.py (LSTM)
  
 
 # License
