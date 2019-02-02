@@ -62,7 +62,6 @@ def count_words(s):
     result = collections.OrderedDict(sorted(result.items(), key=lambda x: (x[1], x[0]), reverse=True))
     wordslist = result.keys()
     assert len(set(tokenstr)) == len(wordslist)
-    # 不重复的单词按照出现次数降序排列的list，第二个是按照出现顺序排列的单词词组
     return (wordslist, tokenstr)
 
 
@@ -122,9 +121,9 @@ def process(path,start,end,class_nums):
         
 
         for t in target:        
-            matrix.append(sim[t])       #把所有LABEL与LABEL"J"的相似度加入matrix
-        if len(target)>0:                   #如果命中的LABEL数量大于0
-            matrix = np.array(matrix).transpose(1,0)        #并行操作
+            matrix.append(sim[t])
+        if len(target)>0:                   
+            matrix = np.array(matrix).transpose(1,0)       
             temp = matrix.max(1)                            
             temp = np.exp(-1*temp)*P
             for j in target:
