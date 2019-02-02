@@ -87,7 +87,6 @@ def count_words(s):
     result = collections.OrderedDict(sorted(result.items(), key=lambda x: (x[1], x[0]), reverse=True))
     wordslist = result.keys()
     assert len(set(tokenstr)) == len(wordslist)
-    # 不重复的单词按照出现次数降序排列的list，第二个是按照出现顺序排列的单词词组
     return (wordslist, tokenstr, word2pos, pos2word)
 
 
@@ -128,8 +127,7 @@ def test_text2matrix(_str, sliding_win=3, target_width=5):
         word2id[wlist[i]] = i
     wordslist_length = len(wlist)
     if target_width > wordslist_length:
-        raise ValueError("图矩阵宽度大于词种类数量")
-    # 统计词频
+        raise ValueError("error")
     AM_table = [[0 for i in range(wordslist_length)] for j in range(wordslist_length)]
     for num in range(0, len(tokenwords) - sliding_win + 1):
         AM_table[wlist.index(tokenwords[num])][wlist.index(tokenwords[num + 1])] += 1
@@ -138,14 +136,12 @@ def test_text2matrix(_str, sliding_win=3, target_width=5):
         AM_table[wlist.index(tokenwords[num + 1])][wlist.index(tokenwords[num])] += 1
         AM_table[wlist.index(tokenwords[num + 2])][wlist.index(tokenwords[num])] += 1
         AM_table[wlist.index(tokenwords[num + 2])][wlist.index(tokenwords[num + 1])] += 1
-    # 关联矩阵：每个单词关联的单词降序排列
     related_tables = {}
     for i in range(wordslist_length):
         related_tables[i] = [[index, num] for index, num in enumerate(AM_table[i]) if num > 0 and index != i]
         related_tables[i].sort(key=lambda x: x[1], reverse=True)
         related_tables[i] = [element[0] for element in related_tables[i]]
     TD_table = [[0 for i in range(target_width)] for j in range(wordslist_length)]
-    # 第一个单词是它本身
     for i in range(wordslist_length):
         fill_table(TD_table[i], related_tables,target_width, [i])
     
@@ -237,7 +233,6 @@ def process(path,start,end,slise_window, target_width, word_vector_size, words_l
         except:
             prob.append(i)
             continue
-        #这里处理TD_table
         
         TTD_table = matrix_vector(wordslist, TD_table, target_width, word_vector_size)
         shape0, shape1, shape2 = TTD_table.shape
@@ -266,9 +261,9 @@ def process(path,start,end,slise_window, target_width, word_vector_size, words_l
 
 if __name__ == '__main__':
     slise_window = 3
-    # 目标宽度
+
     target_width = 20
-    # 词向量长度
+
     word_vector_size = 50
     words_limit = 100
     class_nums = 103
