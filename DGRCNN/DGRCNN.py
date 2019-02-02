@@ -1,9 +1,3 @@
-"""
-Dynamic Routing Between Capsules
-https://arxiv.org/abs/1710.09829
-
-PyTorch implementation by Kenta Iwasaki @ Gram.AI.
-"""
 import sys
 sys.setrecursionlimit(15000)
 
@@ -249,8 +243,8 @@ if __name__ == "__main__":
             output = state['output'].data.cpu().numpy()
         else:
             output = state['output'].data.numpy()
-        for index in range(a.shape[0]):            #对于Batch中的每个sample
-            label = []                             #这个sample中label          
+        for index in range(a.shape[0]):           
+            label = []                                    
             indices = []            
             for i in range(NUM_CLASSES):
                 if a[index][i]==1.0:
